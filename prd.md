@@ -87,5 +87,4 @@ The main landing page after login, providing an overview of user activities and 
 **Underlying API Calls:**
 - `GET /api/users/{user_id}/`
 
-## 3. Club Management
 

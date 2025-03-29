@@ -23,6 +23,8 @@ A full-stack application with:
 
 1. Install Docker and Docker Compose
 
+2. Consider renaming the folder to your own app name, then you can add that to your own git repo
+
 2. copy .env.sample to .env
 
 3. Build and run the containers:

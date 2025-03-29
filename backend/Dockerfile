@@ -11,11 +11,6 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# Copy scripts first and set permissions
-COPY wait-for-it.sh entrypoint.sh ./
-RUN chmod +x wait-for-it.sh entrypoint.sh \
-    && chown -R root:root /app/*.sh \
-    && chmod 755 /app/*.sh
 
 # Copy the rest of the application
 COPY . .
