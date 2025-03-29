@@ -19,6 +19,8 @@ export const setupAxiosInterceptors = () => {
       const token = localStorage.getItem('accessToken');
       if (token) {
         config.headers['Authorization'] = `Token ${token}`;
+        // For debugging
+        console.log('Setting Authorization header:', `Token ${token}`);
       }
       return config;
     },
@@ -38,18 +40,12 @@ export const setupAxiosInterceptors = () => {
         originalRequest._retry = true;
         
         try {
-          // Attempt to refresh the token
-          const refreshToken = localStorage.getItem('refreshToken');
-          const response = await axios.post(`${API_URL}/api/token/refresh/`, {
-            refresh: refreshToken,
-          });
-          
-          // Update stored tokens with new access token
-          localStorage.setItem('accessToken', response.data.access);
-          
-          // Retry original request with new token
-          originalRequest.headers['Authorization'] = `Token ${response.data.access}`;
-          return axios(originalRequest);
+          // For now, just log out as token refresh isn't fully implemented
+          console.log('Received 401, logging out');
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+          window.location.href = '/login';
+          return Promise.reject(error);
         } catch (refreshError) {
           // If refresh fails, clear auth state and redirect to login
           localStorage.removeItem('accessToken');
@@ -63,4 +59,4 @@ export const setupAxiosInterceptors = () => {
       return Promise.reject(error);
     }
   );
-}; 
+};
