@@ -91,11 +91,11 @@ EMAIL_USE_TLS = os.environ.get('SMTP_SSL', 'false').lower() != 'true'
 EMAIL_HOST_USER = os.environ.get('SMTP_USER', '')
 EMAIL_HOST_PASSWORD = os.environ.get('SMTP_PASS', '')
 EMAIL_TIMEOUT = 30  # Timeout in seconds
-DEFAULT_FROM_EMAIL = os.environ.get('SMTP_SENDER', 'noreply@bowlshub.example.com')
+DEFAULT_FROM_EMAIL = os.environ.get('SMTP_SENDER', 'noreply@example.com')
 
 # Uncomment to use console backend instead
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# DEFAULT_FROM_EMAIL = 'noreply@bowlsman.example.com'
+# DEFAULT_FROM_EMAIL = 'noreply@example.com'
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
@@ -122,7 +122,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:3010",
     "http://localhost:8010",
-    "https://bowlshub.fridaydigital.co.uk",
 ]
 
 # Frontend URL for password reset links
@@ -131,7 +130,7 @@ CORS_ALLOWED_ORIGINS = [
 if DEBUG:
     FRONTEND_URL = "http://localhost:3010"
 else:
-    FRONTEND_URL = os.environ.get('FRONTEND_URL', "https://bowlshub.fridaydigital.co.uk")
+    FRONTEND_URL = os.environ.get('FRONTEND_URL', "https://example.com")
 
 CORS_ALLOW_CREDENTIALS = True
 

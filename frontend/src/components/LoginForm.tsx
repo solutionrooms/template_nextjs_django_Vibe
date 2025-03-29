@@ -3,6 +3,16 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
+/**
+ * LoginForm component handles user authentication
+ * 
+ * Provides a form for username/password login and handles:
+ * - Form state management
+ * - API authentication requests
+ * - Error handling and display
+ * - Loading state during API requests
+ * - Redirection after successful login
+ */
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -10,27 +20,37 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  /**
+   * Handles form submission for user login
+   * 
+   * @param e - Form submission event
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
     
     try {
+      // Get API URL from environment or use default
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      
+      // Make login request to the backend
       const response = await axios.post(`${apiUrl}/api/users/login/`, {
         username,
         password,
       });
       
-      // Store tokens in localStorage
+      // Store authentication token in localStorage
       localStorage.setItem('accessToken', response.data.token);
       
-      // Redirect to dashboard
+      // Redirect to dashboard after successful login
       router.push('/dashboard');
     } catch (err) {
+      // Display error message for failed login attempts
       setError('Invalid username or password');
       console.error(err);
     } finally {
+      // Reset loading state regardless of outcome
       setLoading(false);
     }
   };
