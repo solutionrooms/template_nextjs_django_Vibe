@@ -51,6 +51,41 @@ The template includes a complete authentication system with login/registration f
    - Backend API: http://localhost:8000
    - API Docs: http://localhost:8000/api/docs
 
+### Renaming the Project
+
+After cloning the template, you might want to rename it to your own project name:
+
+1. Change the project directory name
+   ```bash
+   # From the parent directory
+   mv template_nextjs_django_Vibe your-project-name
+   cd your-project-name
+   ```
+
+2. Update project references in files:
+   - Update `docker-compose.yml` container names (optional)
+   - Update package names in `frontend/package.json`
+   - Update project name in Django settings (`backend/config/settings.py`)
+
+3. Remove the existing Git repository and initialize a new one
+   ```bash
+   # Remove the original Git repository
+   rm -rf .git
+   
+   # Initialize a new Git repository
+   git init
+   git add .
+   git commit -m "Initial commit from template"
+   ```
+
+4. Push to your own repository
+   ```bash
+   # Create a new repository on GitHub/GitLab/etc. first, then:
+   git remote add origin https://github.com/yourusername/your-project-name.git
+   git branch -M main
+   git push -u origin main
+   ```
+
 ### Creating an Admin User
 
 ```bash
