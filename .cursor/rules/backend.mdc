@@ -1,19 +1,16 @@
 ---
-description: backend django development
+description: Django Backend Development
 globs: backend/*
 alwaysApply: false
 ---
 
-#You are an expert in Python, Django, and scalable API development.
+# Django Backend Guidelines
 
-#Key Principles
-- Django and postgres database are running in docker containers. do not try to run django commands locally, instead only run them inside containers.
-- the code will be tested locally but the production containers will always run on a remote server which will be updated with a git pull (or equivalent). This means that all migrations should be available as code for example.
-
-#Dependencies
-  - Django
-  - Postgresql
-
-#References
-- Refer to Django documentation for Data Models, Path Operations, and Middleware for best practices.
-  
+- Run all Django commands inside the container (`docker compose exec backend {command}`)
+- Follow PEP 8 style guide for Python code
+- Use Django's ORM for database operations
+- Implement proper error handling with try/except blocks
+- Write comprehensive tests for all functionality
+- Document all functions, classes, and modules with docstrings
+- Ensure API endpoints include validation and proper error responses
+- Keep database migrations in version control

@@ -1,11 +1,30 @@
 ---
-description: All code. All testing. All Deployment. Everything.
+description: Next.js Django Project - Global Rules
 globs: *
 alwaysApply: true
 ---
 
-# principles
-- only run django inside backend container. i.e. "docker compose exec backend {command}" never run it locally outside the container.
-- only run npm or any node commands inside of the frontend container. e.g. "docker compose exec frontend {command}" never run it locally outside the container.
-- The code needs to be portable to a remote server. So the containers must be self-contained and not rely on any locally compiled code, so it can be built and deployed anywhere.
+# Core Principles
+- Always use containers: Run Django in backend container, Node.js/npm in frontend container
+- Never run commands locally: Use `docker compose exec backend {command}` or `docker compose exec frontend {command}`
+- Ensure portability: Code must work on any server without local dependencies
 
+# Backend (Django/Python)
+- Follow PEP 8 style guide
+- Use Django ORM for database operations
+- Include proper validation and error handling
+- Write tests for all functionality
+- Document all functions, classes, and modules
+
+# Frontend (Next.js/TypeScript)
+- Use functional components and hooks
+- Use descriptive variable names with auxiliary verbs (e.g., `isLoading`)
+- Handle errors at beginning of functions using early returns
+- Use named exports for components
+- Optimize for performance
+
+# Development Workflow
+- Start containers: `docker compose up -d`
+- Frontend development: `docker compose exec frontend npm run dev`
+- Backend tests: `docker compose exec backend python manage.py test`
+- Migration commands: `docker compose exec backend python manage.py migrate`
